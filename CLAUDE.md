@@ -59,7 +59,7 @@ Opens Chrome with `./chrome-profile/`. Log into ChatGPT manually, then press ESC
 Run from the project root:
 
 ```bash
-claude mcp add --transport stdio image-gen --scope user -- uv run --project "$(pwd)" server.py
+claude mcp add --transport stdio image-gen --scope user -- uv run --project "$(pwd)" "$(pwd)/server.py"
 ```
 
 Writes to `~/.claude.json` (user scope, available across all projects). `$(pwd)` ensures the stored path is absolute. Claude Code spawns the server on demand via stdio and the process exits after each call.
