@@ -4,6 +4,7 @@ Each invocation launches its own Chrome process with the dedicated profile,
 creates a new tab, waits for image generation, downloads the result, then
 cleans up and exits."""
 
+import asyncio
 import base64
 import json
 from pathlib import Path
@@ -126,7 +127,7 @@ async def call_tool(name: str, arguments: dict) -> list[types.ContentBlock]:
     prompt = arguments["prompt"]
     output_dir = Path(arguments["output_dir"])
 
-    filepath = generate_image(prompt, output_dir)
+    filepath = await asyncio.to_thread(generate_image, prompt, output_dir)
 
     return [
         types.TextContent(
