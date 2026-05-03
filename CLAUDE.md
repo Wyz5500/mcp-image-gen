@@ -80,3 +80,4 @@ uv run python test_server.py
 - **Launch model**: On-demand child process. Claude Code spawns the server per invocation; the process exits after the call.
 - **Execution model**: Synchronous — blocks until the image is saved, returns the file path.
 - **Image download**: Uses `page.evaluate()` to `fetch()` the image URL inside the authenticated page context (data URL → base64 decode → write to disk), avoiding the need to manage cookies externally.
+- **CSP restriction**: ChatGPT's `script-src` CSP does not allow `unsafe-eval`, so `page.wait_for_function()` fails (it uses `eval` internally). Use a Python-side polling loop with `page.evaluate()` instead — `evaluate` goes through CDP and bypasses CSP.

@@ -27,7 +27,11 @@ def main():
         )
 
         print("\n  Log into ChatGPT in the browser, then press ESC to exit.\n")
-        page.wait_for_function("window.__escPressed")
+        import time
+        while True:
+            if page.evaluate("() => window.__escPressed"):
+                break
+            time.sleep(0.5)
 
         page.close()
         context.close()
