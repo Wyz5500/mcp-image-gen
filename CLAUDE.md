@@ -27,6 +27,9 @@ Two layers, single file each:
 
 - **`test_server.py`** — Calls `generate_image()` directly, bypassing the MCP layer. Output goes to `./test-output/`.
 
+- **`README.md`** — English documentation for the project.
+- **`README.zh-CN.md`** — Simplified Chinese documentation.
+
 ### Key selectors
 
 | Element | Selector |
